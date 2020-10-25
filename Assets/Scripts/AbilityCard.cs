@@ -4,13 +4,22 @@ using UnityEngine;
 
 public class AbilityCard : Card
 {
-    public AbilityCard(string name)
+    public int Cost { get; private set; }
+    public Sprite Graphic { get; private set; }
+    public CardPlayEffect PlayEffect { get; private set; }
+
+    public AbilityCard(AbilityCardData Data)
     {
-        Name = name;
+        Name = Data.Name;
+        Cost = Data.Cost;
+        Graphic = Data.Graphic;
+        PlayEffect = Data.PlayEffect;
     }
 
     public override void Play()
     {
-        Debug.Log("Playing ability card: " + Name);
+        ITargetable target = TargetController.CurrentTarget;
+        Debug.Log("Playing " + Name + " on target.");
+        PlayEffect.Activate(target);
     }
 }
