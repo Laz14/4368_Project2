@@ -91,7 +91,7 @@ public class Deck <T> where T : Card
     {
         if (IsEmpty)
         {
-            Debug.LogWarning("Deck: Cannot draw new item — deck is empty!");
+            Debug.LogWarning("Deck is now empty!");
             return default;
         }
 

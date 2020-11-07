@@ -12,8 +12,8 @@ public class SetupCardGameState : CardGameState
     public override void Enter()
     {
         Debug.Log("Setup: ...Entering");
-        Debug.Log("Creating " + _numberOfPlayers + " players.");
-        Debug.Log("Creating deck with " + _startingCardNumber + " cards.");
+        //Debug.Log("Creating " + _numberOfPlayers + " players.");
+        //Debug.Log("Creating deck with " + _startingCardNumber + " cards.");
         // CANT change state while still in Enter()/Exit() transition!
         // DONT put ChangeState<> here.
         _activated = false;

@@ -5,15 +5,21 @@ using UnityEngine;
 public class PlayerCommands : MonoBehaviour
 {
     [SerializeField] BoardSpawner _boardSpawner = null;
+    [SerializeField] List<AbilityCardData> _abilityDeckConfig = new List<AbilityCardData>();
 
     Camera _camera = null;
     RaycastHit _hitInfo;
 
     CommandInvoker _commandInvoker = new CommandInvoker();
 
+    Deck<Card> _deck = new Deck<Card>();
+    Card _selectedCard = null;
+
     private void Awake()
     {
         _camera = Camera.main;
+        SetupAbilityDeck();
+        _selectedCard = _deck.Draw();
     }
 
     private void Update()
@@ -22,7 +28,16 @@ public class PlayerCommands : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             GetNewMouseHit();
-            SpawnToken();
+            if (_hitInfo.transform.GetComponent<CardSpot>() != null && _selectedCard != null)
+            {
+                _hitInfo.transform.GetComponent<CardSpot>().SetCard(_selectedCard);
+                _selectedCard = _deck.Draw();
+            }
+            if (_hitInfo.transform.GetComponent<DiscardSpot>() != null && _selectedCard != null)
+            {
+                _hitInfo.transform.GetComponent<DiscardSpot>().AddCard(_selectedCard);
+                _selectedCard = _deck.Draw();
+            }
         }
         // Buff command!
         if (Input.GetMouseButtonDown(1))
@@ -44,7 +59,7 @@ public class PlayerCommands : MonoBehaviour
 
         if (Physics.Raycast(ray, out _hitInfo, Mathf.Infinity))
         {
-            Debug.Log("Ray hit: " + _hitInfo.transform.name);
+            //Debug.Log("Ray hit: " + _hitInfo.transform.name);
         }
     }
 
@@ -72,5 +87,16 @@ public class PlayerCommands : MonoBehaviour
             ICommand buffCommand = new BuffCommand(buffableUnit);
             _commandInvoker.ExecuteCommand(buffCommand);
         }
+    }
+
+    private void SetupAbilityDeck()
+    {
+        foreach (AbilityCardData abilityData in _abilityDeckConfig)
+        {
+            AbilityCard newAbilityCard = new AbilityCard(abilityData);
+            _deck.Add(newAbilityCard);
+        }
+
+        _deck.Shuffle();
     }
 }
