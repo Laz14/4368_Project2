@@ -7,11 +7,12 @@ using UnityEngine.UI;
 public class HealthBar : MonoBehaviour
 {
     private Image HealthBarImage;
+    static Color _color = Color.red;
 
     private void Start()
     {
         HealthBarImage = GetComponent<Image>();
-        HealthBarImage.color = Color.red;
+        HealthBarImage.color = _color;
     }
 
     public void SetHealthBarValue(float value)

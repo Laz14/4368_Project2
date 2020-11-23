@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour, IDamageable
+public class Player : MonoBehaviour, IDamageable
 {
     static int _maxHealth = 70;
     private int _health;
     public bool IsAlive { get; private set; }
     [SerializeField] HealthBar _healthBar;
+    [SerializeField] string _name;
 
     private void Awake()
     {
@@ -34,6 +35,6 @@ public class Enemy : MonoBehaviour, IDamageable
     private void Kill()
     {
         IsAlive = false;
-        Debug.LogError("The enemy was defeated!");
+        Debug.LogError(_name + " was defeated!");
     }
 }

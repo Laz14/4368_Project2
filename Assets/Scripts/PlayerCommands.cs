@@ -30,8 +30,12 @@ public class PlayerCommands : MonoBehaviour
             GetNewMouseHit();
             if (_hitInfo.transform.GetComponent<CardSpot>() != null && _selectedCard != null)
             {
-                _hitInfo.transform.GetComponent<CardSpot>().SetCard(_selectedCard);
-                _selectedCard = _deck.Draw();
+                CardSpot cs = _hitInfo.transform.GetComponent<CardSpot>();
+                if (cs.IsValid(_selectedCard, true))
+                {
+                    cs.SetCard(_selectedCard);
+                    _selectedCard = _deck.Draw();
+                }
             }
             if (_hitInfo.transform.GetComponent<DiscardSpot>() != null && _selectedCard != null)
             {
