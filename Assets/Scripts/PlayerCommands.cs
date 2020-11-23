@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerCommands : MonoBehaviour
 {
     [SerializeField] BoardSpawner _boardSpawner = null;
-    [SerializeField] List<AbilityCardData> _abilityDeckConfig = new List<AbilityCardData>();
+    [SerializeField] List<AttackCardData> _attackDeckConfig = new List<AttackCardData>();
 
     Camera _camera = null;
     RaycastHit _hitInfo;
@@ -91,10 +91,10 @@ public class PlayerCommands : MonoBehaviour
 
     private void SetupAbilityDeck()
     {
-        foreach (AbilityCardData abilityData in _abilityDeckConfig)
+        foreach (AttackCardData attackData in _attackDeckConfig)
         {
-            AbilityCard newAbilityCard = new AbilityCard(abilityData);
-            _deck.Add(newAbilityCard);
+            AttackCard newAttackCard = new AttackCard(attackData);
+            _deck.Add(newAttackCard);
         }
 
         _deck.Shuffle();

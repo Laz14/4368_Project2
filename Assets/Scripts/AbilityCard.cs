@@ -16,10 +16,15 @@ public class AbilityCard : Card
         PlayEffect = Data.PlayEffect;
     }
 
-    public override void Play()
+    public void Play()
     {
         ITargetable target = TargetController.CurrentTarget;
         Debug.Log("Playing " + Name + " on target.");
         PlayEffect.Activate(target);
+    }
+
+    public override void Use(IDamageable target)
+    {
+        throw new System.NotImplementedException();
     }
 }

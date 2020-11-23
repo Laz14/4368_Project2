@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 604208200e914da4686ef8dc205f2eff, type: 3}
+  m_Name: Card_Goblin
+  m_EditorClassIdentifier: 
+  _name: Goblin
+  _damage: 3
+  _graphic: {fileID: 21300000, guid: 61630c523034e354d881ac946ff763b7, type: 3}
+  _lifespan: 6
+  _attackFrequency: 1.6

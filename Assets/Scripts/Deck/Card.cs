@@ -6,5 +6,7 @@ public abstract class Card
 {
     public string Name { get; protected set; } = "...";
 
-    public abstract void Play();
+    //public abstract void Play();
+
+    public abstract void Use(IDamageable target);
 }
