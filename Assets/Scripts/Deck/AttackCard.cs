@@ -8,6 +8,7 @@ public class AttackCard : Card
     public int Lifespan { get; private set; }
     public float AttackFrequency { get; private set; }
     public Sprite Graphic { get; private set; }
+    public AudioClip SoundEffect { get; private set; }
 
     public AttackCard(AttackCardData Data)
     {
@@ -16,6 +17,7 @@ public class AttackCard : Card
         Lifespan = Data.Lifespan;
         AttackFrequency = Data.AttackFrequency;
         Graphic = Data.Graphic;
+        SoundEffect = Data.SoundEffect;
     }
 
     public override void Use(IDamageable target)

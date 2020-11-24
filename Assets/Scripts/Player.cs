@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour, IDamageable
 {
-    static int _maxHealth = 70;
+    static int _maxHealth = 150;
     private int _health;
     public bool IsAlive { get; private set; }
     [SerializeField] HealthBar _healthBar;
@@ -28,9 +28,12 @@ public class Player : MonoBehaviour, IDamageable
 
         if (_health <= 0)
         {
+            
+            
+            
+            
             Kill();
-        }
-    }
+        }    }
 
     private void Kill()
     {

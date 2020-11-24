@@ -6,6 +6,7 @@ public class PlayerCommands : MonoBehaviour
 {
     [SerializeField] BoardSpawner _boardSpawner = null;
     [SerializeField] List<AttackCardData> _attackDeckConfig = new List<AttackCardData>();
+    [SerializeField] DeckSpot _deckSpot = null;
 
     Camera _camera = null;
     RaycastHit _hitInfo;
@@ -20,10 +21,16 @@ public class PlayerCommands : MonoBehaviour
         _camera = Camera.main;
         SetupAbilityDeck();
         _selectedCard = _deck.Draw();
+        _deckSpot.SetCard(_selectedCard);
     }
 
     private void Update()
     {
+        if (_deck.IsEmpty)
+        {
+            SetupAbilityDeck();
+        }
+
         // Spawn Command!
         if (Input.GetMouseButtonDown(0))
         {
@@ -35,12 +42,13 @@ public class PlayerCommands : MonoBehaviour
                 {
                     cs.SetCard(_selectedCard);
                     _selectedCard = _deck.Draw();
+                    _deckSpot.SetCard(_selectedCard);
                 }
             }
-            if (_hitInfo.transform.GetComponent<DiscardSpot>() != null && _selectedCard != null)
+            if (_hitInfo.transform.GetComponent<DeckSpot>() != null && _selectedCard != null)
             {
-                _hitInfo.transform.GetComponent<DiscardSpot>().AddCard(_selectedCard);
                 _selectedCard = _deck.Draw();
+                _deckSpot.SetCard(_selectedCard);
             }
         }
         // Buff command!

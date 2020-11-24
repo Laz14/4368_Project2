@@ -17,3 +17,4 @@ MonoBehaviour:
   _graphic: {fileID: 21300000, guid: 02e18de9dc3ef6f4a905c6aef02f9e19, type: 3}
   _lifespan: 20
   _attackFrequency: 0.4
+  _soundEffect: {fileID: 8300000, guid: 6ec1ae0cc338be04692ff06d67a23c3c, type: 3}

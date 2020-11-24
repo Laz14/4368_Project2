@@ -19,4 +19,7 @@ public class AttackCardData : ScriptableObject
 
     [SerializeField] float _attackFrequency = 1;
     public float AttackFrequency => _attackFrequency;
+
+    [SerializeField] AudioClip _soundEffect = null;
+    public AudioClip SoundEffect => _soundEffect;
 }

@@ -8,13 +8,19 @@ public class CardSpot : MonoBehaviour
     [SerializeField] Player _target = null;
     [SerializeField] SpriteRenderer _spriteRenderer = null;
     [SerializeField] bool _isPlayerSide;
+    AudioSource _audioSource = null;
+
+    private void Awake()
+    {
+        _audioSource = this.GetComponent<AudioSource>();
+    }
 
     public void SetCard(Card card)
     {
-        
         _activeCard = card as AttackCard;
         //Debug.LogWarning(_activeCard.Graphic);
         _spriteRenderer.sprite = _activeCard.Graphic;
+        _audioSource.PlayOneShot(_activeCard.SoundEffect);
         //Debug.Log("Card set: " + card.Name);
         StartCoroutine("UseCard");
     }

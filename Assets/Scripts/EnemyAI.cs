@@ -6,6 +6,7 @@ public class EnemyAI : MonoBehaviour
 {
     [SerializeField] List<AttackCardData> _attackDeckConfig = new List<AttackCardData>();
     [SerializeField] List<CardSpot> _cardSpots = new List<CardSpot>();
+    [SerializeField] DeckSpot _deckSpot = null;
 
     Deck<Card> _deck = new Deck<Card>();
     Card _selectedCard = null;
@@ -14,6 +15,7 @@ public class EnemyAI : MonoBehaviour
     {
         SetupAbilityDeck();
         _selectedCard = _deck.Draw();
+        _deckSpot.SetCard(_selectedCard);
     }
 
     private void Start()
@@ -26,6 +28,10 @@ public class EnemyAI : MonoBehaviour
         //Debug.Log("Started enemy coroutine");
         while (_selectedCard != null)
         {
+            if (_deck.IsEmpty)
+            {
+                SetupAbilityDeck();
+            }
             yield return new WaitForSeconds(Random.Range(1, 3));
             for (int x = 0; x < 5; x++)
             {
@@ -33,6 +39,7 @@ public class EnemyAI : MonoBehaviour
                 if (cs.IsValid(_selectedCard, false)) {
                     cs.SetCard(_selectedCard);
                     _selectedCard = _deck.Draw();
+                    _deckSpot.SetCard(_selectedCard);
                     break;
                 }
             }
